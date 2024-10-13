@@ -2,6 +2,7 @@ from crud.create import createCustomers
 from crud.read import readCustomers
 from crud.delete import deleteCustomers
 from crud.update import updateCustomersCPF, updateCustomersName
+from tools.gen_csv import genCSVfile
 
 from colorama import init, Fore, Style
 
@@ -12,6 +13,7 @@ VIEW_CUSTOMERS = 2
 DELETE_CUSTOMERS = 3
 UPDATE_CPF = 4
 UPDATE_NAME = 5
+GEN_CSV = 6
 
 def menu():
   print(f"\n{"-+-+"*5} CRUD Software {"-+-+"*5}")
@@ -21,6 +23,7 @@ def menu():
         3 - Deletar clientes
         4 - Atualizar CPF
         5 - Atualizar nome
+        6 - Gerar arquivo CSV
   """)
   try:
     return int(input("O que você deseja utilizar? "))
@@ -32,7 +35,7 @@ def main():
   while True:
     input_user = menu()
     
-    if input_user not in [1,2,3,4,5]:
+    if input_user not in [1,2,3,4,5,6]:
       print(Fore.RED + "\nOpção Inválida..." + Style.RESET_ALL)
       continue
 
@@ -46,6 +49,8 @@ def main():
       updateCustomersCPF()
     elif input_user == UPDATE_NAME:
       updateCustomersName()
+    elif input_user == GEN_CSV:
+      genCSVfile()
       
 if __name__ == "__main__":
   main()

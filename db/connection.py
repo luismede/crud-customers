@@ -1,6 +1,9 @@
 import mysql.connector
+import pandas as pd
+
 from mysql.connector import Error
 from colorama import Style, Fore
+from sqlalchemy import create_engine
 
 
 def create_connection():
@@ -73,9 +76,10 @@ def read_customer():
       sql = "SELECT * FROM customers"
       cursor.execute(sql)
       results = cursor.fetchall()
+
       if results:
         for row in results:
-          print(f"ID: {row[0]} | Nome: {row[1]:<20} | CPF: {row[2]}")
+          print(f"ID: {row[0]} | Nome: {row[1]:<10} | CPF: {row[2]}")
       else:
         print(Fore.YELLOW + "Nenhum cliente encontrado." + Style.RESET_ALL)
     except mysql.connector.Error as err:
@@ -83,7 +87,24 @@ def read_customer():
     finally:
         cursor.close()
         close_connection(connection)
-        
+
+# Gerar arquivo .CSV
+def gen_csv_file(name_file):
+  engine = create_engine('mysql+pymysql://root:passw0rd@localhost/table_clients')
+  
+  try:
+    sql = "SELECT * FROM customers"
+    
+    result_dataframe = pd.read_sql(sql, engine)
+    
+    if not result_dataframe.empty:
+      result_dataframe.to_csv(name_file + ".csv")
+      print(Fore.GREEN + "O Arquvio CSV foi gerado com sucesso." + Style.RESET_ALL)
+    else:
+      print(Fore.YELLOW + f"Nenhum cliente foi encontrado. O arquivo CSV não foi gerado!" + Style.RESET_ALL)
+  except Exception as err:
+    print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
+
 # Atualizando nome de clientes
 def update_name(new_name, customer_id):
     connection = create_connection()
@@ -115,3 +136,6 @@ def update_cpf(new_cpf, customer_id):
         finally:
           cursor.close()
           close_connection(connection)
+          
+if __name__ == "__main__":
+  gen_csv_file("Teste")
