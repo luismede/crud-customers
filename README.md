@@ -1,15 +1,5 @@
 ![screenshots](https://github.com/user-attachments/assets/c612fc4e-9da2-4f14-ac6c-fd5fd8d93d3e)
 
-
-Ótimo! Vou te ajudar a preparar uma documentação completa para o seu projeto no GitHub. Vamos cobrir os seguintes tópicos:
-
-1. **Como clonar o repositório**
-2. **Como configurar o ambiente (instalar dependências)**
-3. **Como configurar o banco de dados MySQL**
-4. **Como executar a aplicação**
-
-Aqui está uma estrutura de arquivo `README.md` que você pode utilizar no seu repositório GitHub:
-
 ---
 
 # Documentação da Aplicação
