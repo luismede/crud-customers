@@ -1,3 +1,13 @@
 colorama==0.4.6
+greenlet==3.1.1
 mysql-connector-python==9.0.0
+numpy==2.1.2
+pandas==2.2.3
+PyMySQL==1.1.1
+python-dateutil==2.9.0.post0
+pytz==2024.2
+six==1.16.0
+SQLAlchemy==2.0.35
+typing_extensions==4.12.2
+tzdata==2024.2
 validate-docbr==1.10.0
