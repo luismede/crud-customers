@@ -3,6 +3,10 @@
 ---
 
 # Documentação da Aplicação
+![GitHub License](https://img.shields.io/github/license/luismede/crud-customers)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/luismede/crud-customers)
+
+
 
 ### Clonando o Repositório
 
