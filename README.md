@@ -91,11 +91,17 @@ A aplicação requer um banco de dados MySQL para armazenar os clientes. Siga os
    CREATE TABLE customers (
        id INT AUTO_INCREMENT PRIMARY KEY,
        name VARCHAR(255) NOT NULL,
-       cpf VARCHAR(11) NOT NULL
+       cpf VARCHAR(11) NOT NULL,
+       number_phone VARCHAR(15) NOT NULL,
+       cep VARCHAR(9) NOT NULL,
+       address VARCHAR(100) NOT NULL,
+       city VARCHAR(100) NOT NULL,
+       uf VARCHAR(3) NOT NULL
+      
    );
    ```
 
-   Essa tabela possui uma coluna `id` que é a chave primária e auto-incrementada, uma coluna `name` para o nome do cliente, e uma coluna `cpf` para o CPF (formato brasileiro, 11 caracteres).
+   Essa tabela possui uma coluna `id` que é a chave primária e auto-incrementada, uma coluna `name` para o nome do cliente, e uma coluna `cpf` para o CPF (formato brasileiro, 11 caracteres), uma coluna `number_phone` para o telefone do cliente, uma coluna `cep`para o CEP do cliente, `addres` para o lologradouro do cliente, uma coluna `city` para a cidade em que o cliente mora e uma coluna `uf` para a UF do cliente.
 
 ---
 
