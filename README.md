@@ -5,6 +5,9 @@
 # Documentação da Aplicação
 ![GitHub License](https://img.shields.io/github/license/luismede/crud-customers)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/luismede/crud-customers)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mysql-connector-python)
+![PyPI - Downloads](https://img.shields.io/pypi/dd/mysql-connector-python)
+
 
 
 
@@ -27,19 +30,19 @@ A aplicação utiliza um arquivo `requirements.txt` para listar as dependências
 2. Crie um ambiente virtual (opcional, mas recomendado):
    
    ```bash
-   python -m venv venv
+   python -m venv .venv
    ```
 
 3. Ative o ambiente virtual:
 
    - No Windows:
      ```bash
-     venv\Scripts\activate
+     .venv\Scripts\activate
      ```
 
    - No Linux/MacOS:
      ```bash
-     source venv/bin/activate
+     source .venv/bin/activate
      ```
 
 4. Instale as dependências listadas no `requirements.txt`:
