@@ -9,7 +9,7 @@ validador_cpf = CPF()
 def createCustomers():
     while True:
             print(Fore.GREEN + "\nRegistro de Clientes" + Style.RESET_ALL)
-            name = input("\nDigite o nome do cliente: ")
+            name = input("\nDigite o nome do(a) cliente: ")
             cpf = input("CPF: ")
             number = input("Telefone: ")
             cep = input("CEP: ")
@@ -19,10 +19,10 @@ def createCustomers():
 
             while not validador_cpf.validate(cpf):
                 print(Fore.RED + "CPF inválido! Informe um CPF válido." + Style.RESET_ALL)
-                cpf = input("Digite o CPF do novo cliente a ser registrado: ")
+                cpf = input("Digite o CPF do(a) novo(a) cliente a ser registrado: ")
 
             create_customer(name, cpf, number, cep, address, city, uf)
-            print(Fore.GREEN + f"Cliente {name} registrado com sucesso!" + Style.RESET_ALL)
+            print(Fore.GREEN + f"Cliente {name} registrado(a) com sucesso!" + Style.RESET_ALL)
             break
 
 if __name__ == "__main__":

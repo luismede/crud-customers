@@ -8,8 +8,8 @@ validador_cpf = CPF()
 def updateCustomers():
     try:
         print(Fore.GREEN + "\nAtualizar nome do cliente" + Style.RESET_ALL)
-        id_customer = int(input("Digite o ID do cliente que você deseja atualizar os dados: "))
-        new_number = input("Telefone do cliente: ")
+        id_customer = int(input("Digite o ID do(a) cliente que você deseja atualizar os dados: "))
+        new_number = input("Telefone do(a) cliente: ")
         new_cep = input("CEP: ")
         new_address = input("Logradouro: ")
         new_city = input("Cidade: ")
@@ -20,7 +20,7 @@ def updateCustomers():
 
         update_customer(new_number, new_cep, new_address, new_city, id_customer)
     except Exception as e:
-        print(Fore.RED + f"\nErro ao atualizar o cliente: {str(e)}" + Style.RESET_ALL)
+        print(Fore.RED + f"\nErro ao atualizar o(a) cliente: {str(e)}" + Style.RESET_ALL)
 
     
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ from colorama import init, Fore, Style
 init()
 
 def searchCustomers():
-    customer_cpf = input("Digite o CPF do cliente: ")
+    customer_cpf = input("Digite o CPF do(a) cliente: ")
     try:        
         def populate_table():
             rows = search_customer(customer_cpf)

@@ -59,7 +59,7 @@ def delete_customer(customer_cpf):
           val = (customer_cpf,)
           cursor.execute(sql, val)
           connection.commit()
-          print(Fore.GREEN + f"Cliente com ID {customer_cpf} deletado." + Style.RESET_ALL)
+          print(Fore.GREEN + f"Cliente com CPF {customer_cpf} deletado." + Style.RESET_ALL)
       except mysql.connector.Error as err:
           print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
       finally:
