@@ -1,7 +1,8 @@
 from crud.create import createCustomers
 from crud.read import readCustomers
 from crud.delete import deleteCustomers
-from crud.update import updateCustomersCPF, updateCustomersName
+from crud.update import updateCustomers
+from tools.search import searchCustomers
 from tools.gen_csv import genCSVfile
 
 from colorama import init, Fore, Style
@@ -11,8 +12,8 @@ init()
 ADD_CUSTOMERS = 1
 VIEW_CUSTOMERS = 2
 DELETE_CUSTOMERS = 3
-UPDATE_CPF = 4
-UPDATE_NAME = 5
+UPDATE_CUSTOMERS = 4
+SEARCH_CUSTOMER = 5
 GEN_CSV = 6
 
 def menu():
@@ -21,8 +22,8 @@ def menu():
         1 - Adicionar novos clientes
         2 - Visualizar tabela de clientes
         3 - Deletar clientes
-        4 - Atualizar CPF
-        5 - Atualizar nome
+        4 - Atualizar Cliente
+        5 - Pesquisar por cliente
         6 - Gerar arquivo CSV
   """)
   try:
@@ -45,10 +46,10 @@ def main():
       readCustomers()
     elif input_user == DELETE_CUSTOMERS:
       deleteCustomers()
-    elif input_user == UPDATE_CPF:
-      updateCustomersCPF()
-    elif input_user == UPDATE_NAME:
-      updateCustomersName()
+    elif input_user == UPDATE_CUSTOMERS:
+      updateCustomers()
+    elif input_user == SEARCH_CUSTOMER:
+      searchCustomers()
     elif input_user == GEN_CSV:
       genCSVfile()
       

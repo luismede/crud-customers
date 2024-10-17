@@ -5,7 +5,6 @@ from mysql.connector import Error
 from colorama import Style, Fore
 from sqlalchemy import create_engine
 
-
 def create_connection():
   try:
     connection = mysql.connector.connect(
@@ -25,13 +24,13 @@ def close_connection(connection):
     connection.close()
     
 # Adicionando Clientes ao MYSQLs
-def create_customer(name, cpf):
+def create_customer(name, cpf, number, cep, address, city, uf):
   connection = create_connection()
   if connection:
     cursor = connection.cursor()
     try:
-        sql = "INSERT INTO customers (name, cpf) VALUES (%s, %s)"
-        cursor.execute(sql,(name,cpf))
+        sql = "INSERT INTO customers (name, cpf, number_phone, cep, address, city, uf) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(sql,(name, cpf, number, cep, address, city, uf))
         connection.commit()
     except mysql.connector.Error as err:
         print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
@@ -41,26 +40,26 @@ def create_customer(name, cpf):
   
   
 # Deletando Clientes da Tabela
-def delete_customer(customer_id):
+def delete_customer(customer_cpf):
   connection = create_connection()
   if connection:
     cursor = connection.cursor()
         
-    sql_check = "SELECT * FROM table_clients.customers WHERE id = %s"
-    val_check = (customer_id,)
+    sql_check = "SELECT * FROM table_clients.customers WHERE cpf = %s"
+    val_check = (customer_cpf,)
     cursor.execute(sql_check, val_check)
     
     result = cursor.fetchall()
     
     if not result:
-      print(Fore.RED + f"Cliente com ID {customer_id} não encontrado." + Style.RESET_ALL)
+      print(Fore.RED + f"Cliente com CPF {customer_cpf} não encontrado." + Style.RESET_ALL)
     else:
       try:
-          sql = f"DELETE FROM table_clients.customers WHERE id = %s;"
-          val = (customer_id,)
+          sql = f"DELETE FROM table_clients.customers WHERE cpf = %s;"
+          val = (customer_cpf,)
           cursor.execute(sql, val)
           connection.commit()
-          print(Fore.GREEN + f"Cliente com ID {customer_id} deletado." + Style.RESET_ALL)
+          print(Fore.GREEN + f"Cliente com ID {customer_cpf} deletado." + Style.RESET_ALL)
       except mysql.connector.Error as err:
           print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
       finally:
@@ -88,7 +87,6 @@ def read_customer():
 # Gerar arquivo .CSV
 def gen_csv_file(name_file):
   engine = create_engine('mysql+pymysql://root:passw0rd@localhost/table_clients')
-  
   try:
     sql = "SELECT * FROM customers"
     
@@ -103,34 +101,46 @@ def gen_csv_file(name_file):
     print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
 
 # Atualizando nome de clientes
-def update_name(new_name, customer_id):
+def update_customer(new_number, new_cep, new_address, new_city, customer_id):
     connection = create_connection()
     if connection:
         cursor = connection.cursor()
         try:
-          sql = "UPDATE customers SET name = %s WHERE id = %s"
-          cursor.execute(sql, (new_name, customer_id))
+          sql = "UPDATE customers SET number, cep, address, city = %s, %s, %s, %s WHERE id = %s"
+          cursor.execute(sql, (new_number, new_cep, new_address, new_city, customer_id))
           connection.commit()
-          print(Fore.BLUE + f"Nome do cliente com ID {customer_id} atualizado para {new_name}." + Style.RESET_ALL)
+          print(Fore.BLUE + f"Nome do cliente com ID {customer_id} atualizado com sucesso" + Style.RESET_ALL)
         except mysql.connector.Error as err:
           print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
         finally:
           cursor.close()
           close_connection(connection)
   
-# Atualizando CPF de clientes
-def update_cpf(new_cpf, customer_id):
-    connection = create_connection()
-    if connection:
-        cursor = connection.cursor()
-        try:
-          sql = "UPDATE customers SET cpf = %s WHERE id = %s"
-          cursor.execute(sql, (new_cpf, customer_id))
-          connection.commit()
-          print(Fore.BLUE + f"CPF do cliente com ID {customer_id} atualizado para {new_cpf}." + Style.RESET_ALL)
-        except mysql.connector.Error as err:
+# Pesquisar cliente po CPF
+def search_customer(customer_cpf):
+  connection = create_connection()
+  if connection:
+    cursor = connection.cursor()
+        
+    sql_check = "SELECT * FROM table_clients.customers WHERE cpf = %s"
+    val_check = (customer_cpf,)
+    cursor.execute(sql_check, val_check)
+    
+    result = cursor.fetchall()
+    
+    if not result:
+      print(Fore.RED + f"Cliente com CPF {customer_cpf} não encontrado." + Style.RESET_ALL)
+    else:
+      try:
+          sql = "SELECT * FROM customers WHERE cpf = %s"
+          val = (customer_cpf,)
+          cursor.execute(sql, val)
+          rows = cursor.fetchall()
+          return rows
+      except mysql.connector.Error as err:
           print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
-        finally:
+          return []
+      finally:
           cursor.close()
           close_connection(connection)
           
