@@ -69,24 +69,21 @@ def delete_customer(customer_id):
 
 # Visualizando Tabela
 def read_customer():
-  connection = create_connection()
-  if connection:
-    cursor = connection.cursor()
-    try:
-      sql = "SELECT * FROM customers"
-      cursor.execute(sql)
-      results = cursor.fetchall()
+    connection = create_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            sql = "SELECT * FROM customers"
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            return rows
+        except mysql.connector.Error as err:
+            print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
+            return []
+        finally:
+            cursor.close()
+            close_connection(connection)
 
-      if results:
-        for row in results:
-          print(f"ID: {row[0]} | Nome: {row[1]:<10} | CPF: {row[2]}")
-      else:
-        print(Fore.YELLOW + "Nenhum cliente encontrado." + Style.RESET_ALL)
-    except mysql.connector.Error as err:
-        print(Fore.RED + f"Erro: {err}" + Style.RESET_ALL)
-    finally:
-        cursor.close()
-        close_connection(connection)
 
 # Gerar arquivo .CSV
 def gen_csv_file(name_file):
