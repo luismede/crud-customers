@@ -15,7 +15,7 @@ def updateCustomers():
         new_city = input("Cidade: ")
 
         if id_customer == 0:
-            print(Fore.RED + "\ID inválido! O ID não pode estar vazio." + Style.RESET_ALL)
+            print(Fore.RED + "\nID inválido! O ID não pode estar vazio." + Style.RESET_ALL)
             return
 
         update_customer(new_number, new_cep, new_address, new_city, id_customer)
