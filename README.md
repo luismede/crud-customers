@@ -120,7 +120,7 @@ A aplicação requer um banco de dados MySQL para armazenar os clientes. Siga os
 3. Execute o script Python:
 
    ```bash
-   python nome_do_arquivo.py
+   python app.py
    ```
 
 ---
