@@ -17,7 +17,7 @@ SEARCH_CUSTOMER = 5
 GEN_CSV = 6
 
 def menu():
-  print(f"\n{"-+-+"*5} CRUD Software {"-+-+"*5}")
+  print(f"\n{'-+-+'*5} CRUD Software {'-+-+'*5}")
   print("""
         1 - Adicionar novos clientes
         2 - Visualizar tabela de clientes
