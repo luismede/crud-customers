@@ -8,9 +8,10 @@ from sqlalchemy import create_engine
 def create_connection():
   try:
     connection = mysql.connector.connect(
-      host="localhost",
+      host="127.0.0.1",
+      port=3307,
       user="root",
-      password="passw0rd",
+      password="root",
       database="table_clients"
     )
     if connection.is_connected():
@@ -86,7 +87,7 @@ def read_customer():
 
 # Gerar arquivo .CSV
 def gen_csv_file(name_file):
-  engine = create_engine('mysql+pymysql://root:passw0rd@localhost/table_clients')
+  engine = create_engine('mysql+pymysql://root:root@localhost:3307/table_clients')
   try:
     sql = "SELECT * FROM customers"
     
@@ -146,3 +147,8 @@ def search_customer(customer_cpf):
           
 if __name__ == "__main__":
   gen_csv_file("Teste")
+
+
+
+
+
