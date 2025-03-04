@@ -89,7 +89,7 @@ A aplicação requer um banco de dados MySQL para armazenar os clientes. Siga os
 
    ```sql
    CREATE TABLE customers (
-       id INT AUTO_INCREMENT PRIMARY KEY,
+       id SERIAL AUTO_INCREMENT PRIMARY KEY,
        name VARCHAR(255) NOT NULL,
        cpf VARCHAR(11) NOT NULL,
        number_phone VARCHAR(15) NOT NULL,
@@ -112,15 +112,15 @@ A aplicação requer um banco de dados MySQL para armazenar os clientes. Siga os
 2. Edite as configurações de conexão com o banco de dados no código da aplicação, se necessário. Abra o arquivo onde a conexão MySQL(db.connection.py) está configurada e ajuste as credenciais:
 
    ```python
-   engine = create_engine('mysql+pymysql://root:passw0rd@localhost/table_clients')
+   engine = create_engine('mysql+pymysql://root:root@localhost:3307/table_clients')
    ```
 
-   Substitua `root` e `passw0rd` pelas suas credenciais de banco de dados, e `table_clients` pelo nome do banco de dados que você criou.
+   Substitua `root` e `root` pelas suas credenciais de banco de dados, e `table_clients` pelo nome do banco de dados que você criou.
 
 3. Execute o script Python:
 
    ```bash
-   python app.py
+   python Main.py
    ```
 
 ---
